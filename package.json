@@ -1,0 +1,36 @@
+{
+  "name": "growbox",
+  "version": "0.0.0",
+  "description": "Growbox Controller",
+  "main": "App.ts",
+  "author": "vicentelyrio@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc",
+    "espruino": "espruino",
+    "upload": "yarn espruino dist/App.js -p /dev/cu.usbserial-14140 -b 115200 --verbose --no-ble",
+    "deploy": "yarn build && yarn upload",
+    "dev": "yarn upload --watch"
+  },
+  "devDependencies": {
+    "@types/espruino": "^1.94.3",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "espruino": "^0.1.31",
+    "husky": "^4.2.5",
+    "typescript": "^3.9.3",
+    "yarn": "^1.22.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  }
+}
