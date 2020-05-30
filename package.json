@@ -2,24 +2,39 @@
   "name": "growbox",
   "version": "0.0.0",
   "description": "Growbox Controller",
-  "main": "App.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "author": "vicentelyrio@gmail.com",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "tsc --watch",
-    "build": "tsc",
+    "build": "rollup -c",
+    "watch": "rollup -cw",
     "espruino": "espruino",
-    "upload": "yarn espruino dist/App.js -p /dev/cu.usbserial-14140 -b 115200 --verbose --no-ble",
+    "upload": "yarn espruino dist/index.js -p /dev/cu.usbserial-14140 -b 115200 --verbose --no-ble",
     "deploy": "yarn build && yarn upload",
-    "dev": "yarn upload --watch"
+    "dev": "yarn upload --watch",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src"
   },
   "devDependencies": {
     "@types/espruino": "^1.94.3",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^3.0.2",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-typescript": "^7.2.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.13.2",
     "espruino": "^0.1.31",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.7",
+    "rollup": "^2.11.2",
+    "rollup-plugin-typescript2": "^0.27.1",
     "typescript": "^3.9.3",
     "yarn": "^1.22.4"
   },
@@ -30,7 +45,13 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
+  },
+  "lint-staged": {
+    "src/*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }
