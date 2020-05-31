@@ -1,6 +1,6 @@
 {
   "name": "espruino-boilerplate",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "A simple Espruino Boilerplate with TypeScript",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -20,7 +20,8 @@
     "espruino": "espruino",
     "espruino:connect": "yarn espruino $(cat .env | sed 's/#.*//g' | xargs)",
     "espruino:deploy": "yarn code:build && yarn espruino:connect dist/index.js",
-    "espruino:watch": "yarn espruino:deploy --watch"
+    "espruino:watch": "yarn espruino:deploy --watch",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
@@ -40,6 +41,7 @@
     "rollup": "^2.11.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.4",
+    "semantic-release": "^17.0.8",
     "typescript": "^3.9.3",
     "yarn": "^1.22.4"
   },
@@ -71,5 +73,9 @@
     "require": [
       "source-map-support/register"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vicentelyrio/espruino-boilerplate.git"
   }
 }

@@ -4,3 +4,13 @@ node_js:
 cache: yarn
 script:
   - yarn ci
+jobs:
+  include:
+    - stage: release
+      node_js: "12.14.0"
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
