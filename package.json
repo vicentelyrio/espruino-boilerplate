@@ -1,7 +1,7 @@
 {
-  "name": "growbox",
+  "name": "espruino-boilerplate",
   "version": "0.0.0",
-  "description": "Growbox Controller",
+  "description": "A simple Espruino Boilerplate with TypeScript",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
@@ -12,18 +12,21 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "rollup -c",
-    "watch": "rollup -cw",
+    "code:build": "rollup -c",
+    "code:watch": "rollup -cw",
+    "code:lint": "eslint --ext .ts ./src",
+    "code:test": "ava",
     "espruino": "espruino",
-    "upload": "yarn espruino dist/index.js -p /dev/cu.usbserial-14140 -b 115200 --verbose --no-ble",
-    "deploy": "yarn build && yarn upload",
-    "dev": "yarn upload --watch",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src"
+    "espruino:connect": "yarn espruino $(cat .env | sed 's/#.*//g' | xargs)",
+    "espruino:deploy": "yarn espruino:connect dist/index.js",
+    "espruino:watch": "yarn espruino:deploy --watch"
   },
   "devDependencies": {
+    "@ava/typescript": "^1.1.1",
     "@types/espruino": "^1.94.3",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^3.0.2",
+    "ava": "^3.8.2",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.1.0",
@@ -35,6 +38,7 @@
     "lint-staged": "^10.2.7",
     "rollup": "^2.11.2",
     "rollup-plugin-typescript2": "^0.27.1",
+    "rollup-plugin-uglify": "^6.0.4",
     "typescript": "^3.9.3",
     "yarn": "^1.22.4"
   },
@@ -50,8 +54,21 @@
     }
   },
   "lint-staged": {
-    "src/*.{js,ts,tsx}": [
+    "src/*.{ts}": [
       "eslint --fix"
+    ]
+  },
+  "ava": {
+    "typescript": {
+      "extensions": [
+        "ts"
+      ],
+      "rewritePaths": {
+        "src/": "build/"
+      }
+    },
+    "require": [
+      "source-map-support/register"
     ]
   }
 }
