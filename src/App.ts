@@ -1,6 +1,9 @@
-import AppConfig from './App.config';
+import { delay } from './App.config';
+
+const Main = (): void => {
+  console.log('debug');
+};
 
 setInterval(() => {
-  // digitalWrite(22 as Pin, 1);
-  console.log('test');
-}, AppConfig.refreshPeriodSec * 1000);
+  Main();
+}, delay);

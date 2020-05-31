@@ -1,5 +1,5 @@
-const refreshPeriodSec = 2;
+export const delay = 2000;
 
 export default {
-  refreshPeriodSec,
+  delay,
 };

@@ -19,9 +19,7 @@ export default {
     ...Object.keys(pkg.peerDependencies || {}),
   ],
   plugins: [
-    typescript({
-      typescript: typescript(),
-    }),
+    typescript(),
     uglify(),
   ],
 };
