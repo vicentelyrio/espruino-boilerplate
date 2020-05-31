@@ -16,9 +16,10 @@
     "code:watch": "rollup -cw",
     "code:lint": "eslint --ext .ts ./src",
     "code:test": "ava",
+    "ci": "yarn code:lint && yarn code:test",
     "espruino": "espruino",
     "espruino:connect": "yarn espruino $(cat .env | sed 's/#.*//g' | xargs)",
-    "espruino:deploy": "yarn espruino:connect dist/index.js",
+    "espruino:deploy": "yarn code:build && yarn espruino:connect dist/index.js",
     "espruino:watch": "yarn espruino:deploy --watch"
   },
   "devDependencies": {
