@@ -3,6 +3,7 @@
 
 This is a simple Espruino boilerplate designed to be written with Typescript and tested with AVA. The code is compiled and minified using Rollup and uglify, and it's deployed to your micro-controller using Espruino-cli.
 
+![Travis (.org)](https://img.shields.io/travis/vicentelyrio/espruino-boilerplate)
 ![GitHub](https://img.shields.io/github/license/vicentelyrio/espruino-boilerplate)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
@@ -25,47 +26,47 @@ You should respect this structure (`key` [space] `value`), where `key` is a [val
 
 ## Code Tasks
 
+Builds the TS code and send it to the `dist` folder.
 ```
 yarn code:build
 ```
-Builds the TS code and send it to the `dist` folder.
 
+Builds the TS code and send it to the `dist` folder in watch mode.
 ```
 yarn code:watch
 ```
-Builds the TS code and send it to the `dist` folder in watch mode.
 
+Runs eslint on the TS code.
 ```
 yarn code:lint
 ```
-Runs eslint on the TS code.
 
+Runs AVA test suit.
 ```
 yarn code:test
 ```
-Runs AVA test suit.
 
 ## Espruino Tasks
 
+Runs espruino cli without any parameter. You could use this task to test your ports (`yarn espruino --list --verbose`)
 ```
 yarn espruino
 ```
-Runs espruino cli without any parameter. You could use this task to test your ports (`yarn espruino --list --verbose`)
 
+Connects to your board using the parameters of the `.env` file
 ```
 yarn espruino:connect
 ```
-Connects to your board using the parameters of the `.env` file
 
+Builds the code and sends the code to your board
 ```
 yarn espruino:deploy
 ```
-Builds the code and sends the code to your board
 
+Connects to the board and watchs for any change on the `dist` folder
 ```
 yarn espruino:watch
 ```
-Connects to the board and watchs for any change on the `dist` folder
 
 ## Development
 A normal development workflow would be to open 2 terminal instances and run both of the `watch` tasks
@@ -78,6 +79,12 @@ yarn code:watch
 Terminal 2
 ```
 yarn espruino:watch
+```
+
+## CI
+There is a minimal [TravisCI](https://travis-ci.org/) config that calls the task
+```
+yarn ci
 ```
 
 ### Troubleshooting
