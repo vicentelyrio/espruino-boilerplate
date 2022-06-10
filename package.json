@@ -41,7 +41,7 @@
     "rollup": "^2.11.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "rollup-plugin-uglify": "^6.0.4",
-    "semantic-release": "^17.0.8",
+    "semantic-release": "^19.0.3",
     "typescript": "^3.9.3",
     "yarn": "^1.22.4"
   },
